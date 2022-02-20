@@ -3,6 +3,9 @@ const app = express()
 const cors = require('cors')
 const bodyParser = require("body-parser");
 
+//routes
+const user = require("./routes/user-route")
+
 require('dotenv').config()
 
 app.use(cors())
@@ -12,7 +15,8 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html')
 });
 
-
+//user 
+app.use("/api", user);
 
 
 
