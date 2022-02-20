@@ -8,6 +8,22 @@ const user = require("./routes/user-route")
 
 require('dotenv').config()
 
+//mongo connection
+let mongoose;
+try {
+	mongoose = require("mongoose");
+} catch (e) {
+	console.log(e);
+}
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true });
+app.get("/is-mongoose-ok", function (req, res) {
+	if (mongoose) {
+		res.json({ isMongooseOk: !!mongoose.connection.readyState });
+	} else {
+		res.json({ isMongooseOk: false });
+	}
+});
+
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'))
