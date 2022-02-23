@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 
 //routes
 const user = require("./routes/user-route")
+const exercise = require("./routes/exercise-route")
 
 require('dotenv').config()
 
@@ -33,6 +34,7 @@ app.get('/', (req, res) => {
 
 //user 
 app.use("/api", user);
+app.use("/api", exercise);
 
 
 
